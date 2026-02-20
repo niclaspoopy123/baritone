@@ -1,0 +1,37 @@
+plugins {
+    id 'fabric-loom' version '0.2.7-SNAPSHOT'
+    id 'java'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+group = 'baritone.plus'
+version = '1.0.0'
+
+minecraft {
+}
+
+dependencies {
+    minecraft 'com.mojang:minecraft:1.15.2'
+    mappings 'net.fabricmc:yarn:1.15.2+build.15:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.7.10+build.191'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.5.1+build.294-1.15'
+
+    // Baritone API — drop the JAR into /libs or reference from project root
+    compileOnly files('baritone-api-fabric-1.15.0.jar')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'fabric.mod.json'
+        expand 'version': project.version
+    }
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
