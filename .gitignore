@@ -1,0 +1,16 @@
+# Build output
+build/
+out/
+.gradle/
+
+# IDE files
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+*.launch
+
+# OS files
+.DS_Store
+Thumbs.db
