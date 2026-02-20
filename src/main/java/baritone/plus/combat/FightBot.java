@@ -70,7 +70,7 @@ public class FightBot {
             return;
         }
 
-        client.player.lookAt(target, 360.0f, 360.0f);
+        client.player.lookAt(target, 30.0f, 30.0f);
         client.interactionManager.attackEntity(client.player, target);
         client.player.swingHand(Hand.MAIN_HAND);
     }

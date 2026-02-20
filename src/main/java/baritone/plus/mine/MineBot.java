@@ -6,7 +6,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -175,12 +174,14 @@ public class MineBot {
             return;
         }
 
-        Vec3d center = new Vec3d(
-                currentTarget.getX() + 0.5,
-                currentTarget.getY() + 0.5,
-                currentTarget.getZ() + 0.5
-        );
-        client.player.lookAt(center);
+        double dx = currentTarget.getX() + 0.5 - client.player.getX();
+        double dy = currentTarget.getY() + 0.5 - (client.player.getY() + client.player.getStandingEyeHeight());
+        double dz = currentTarget.getZ() + 0.5 - client.player.getZ();
+        double distXZ = Math.sqrt(dx * dx + dz * dz);
+        float yaw = (float) Math.toDegrees(Math.atan2(-dx, dz));
+        float pitch = (float) Math.toDegrees(-Math.atan2(dy, distXZ));
+        client.player.yaw = yaw;
+        client.player.pitch = pitch;
 
         if (client.interactionManager != null) {
             Direction face = Direction.UP;

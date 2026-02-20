@@ -102,7 +102,7 @@ public class CrystalBot {
             return;
         }
 
-        Vec3d hitVec = new Vec3d(bestPos.getX() + 0.5, bestPos.getY() + 1.0, bestPos.getZ() + 0.5);
+        Vec3d hitVec = new Vec3d(bestPos.getX() + 0.5, bestPos.getY() + 0.5, bestPos.getZ() + 0.5);
         BlockHitResult hitResult = new BlockHitResult(hitVec, Direction.UP, bestPos, false);
         client.interactionManager.interactBlock(client.player, client.world, Hand.MAIN_HAND, hitResult);
     }
